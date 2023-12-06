@@ -8,8 +8,10 @@ class Ball():
         
         
 class GravityBall(Ball):
-    def __init__(self, mass=1, x0=0, y0=0, vx0=0, vy0=0, ax=0, ay=0):
+    def __init__(self, mass=1, radius=1, x0=0, y0=0, vx0=0, vy0=0, ax=0, ay=0):
         super().__init__()
+        self.mass = mass
+        self.radius = radius
         self.x0 = x0
         self.y0 = y0
         self.vx0 = vx0
@@ -52,3 +54,7 @@ class GravityBall(Ball):
         return self.ax
     def get_ay(self):
         return self.ay
+    def get_mass(self):
+        return self.mass
+    def get_radius(self):
+        return self.radius

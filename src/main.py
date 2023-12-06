@@ -6,14 +6,16 @@ from utils import *
 
 # pygame setup
 pygame.init()
-screen = pygame.display.set_mode((1280, 720))
+WIDTH = 1280
+HEIGHT = 720
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
 running = True
 dt = 0
 pygame.font.init() # you have to call this at the start, 
                    # if you want to use this module.
 my_font = pygame.font.SysFont('Comic Sans MS', 30)
-test_ball = GravityBall(10, screen.get_width() / 2, screen.get_height() / 4, 0, 0, 0, G_0*FUDGE)
+test_ball = GravityBall(10, 40, screen.get_width() / 2, screen.get_height() / 4, 0, 0, 0, G_0*FUDGE)
 # player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)
 
 while running:
@@ -26,10 +28,15 @@ while running:
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("cyan2")
     time = pygame.time.get_ticks() / 1000
-    text_surface = my_font.render(str(math.trunc(time)), False, (0, 0, 0))
-    screen.blit(text_surface, (0,0))
-    calculate_position(test_ball, time)
-    pygame.draw.circle(screen, "red", pygame.Vector2(test_ball.get_x(), test_ball.get_y()), 40)
+    timer_text = my_font.render(str(math.trunc(time)), False, (0, 0, 0))
+    dt_text = my_font.render(str(math.trunc(dt)), False, (0, 0, 0))
+    mechanical_energy_text = my_font.render(str(round(calculate_mechanical_energy(test_ball, HEIGHT), 2)), False, (0, 0, 0))
+    screen.blit(timer_text, (0,0))
+    screen.blit(mechanical_energy_text, (0,50))
+    screen.blit(dt_text, (0,100))
+    calculate_position(test_ball, dt)
+    collision_handler(test_ball, HEIGHT)
+    pygame.draw.circle(screen, "red", pygame.Vector2(test_ball.get_x(), test_ball.get_y()), test_ball.get_radius())
 
     # keys = pygame.key.get_pressed()
     # if keys[pygame.K_w]:
@@ -47,6 +54,6 @@ while running:
     # limits FPS to 60
     # dt is delta time in seconds since last frame, used for framerate-
     # independent physics.
-    dt = clock.tick(120) / 1000
+    dt = clock.tick(60) / 1000
 
 pygame.quit()

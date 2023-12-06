@@ -28,7 +28,12 @@ while running:
     time = pygame.time.get_ticks() / 1000
     text_surface = my_font.render(str(math.trunc(time)), False, (0, 0, 0))
     screen.blit(text_surface, (0,0))
-    calculate_position(test_ball, time)
+    calculate_position(test_ball, time, dt)
+    w, h = pygame.display.get_surface().get_size()
+    if (test_ball.get_y() >= h):
+        print("test")
+        v_i = test_ball.get_vy()
+        test_ball.set_vy(-v_i)
     pygame.draw.circle(screen, "red", pygame.Vector2(test_ball.get_x(), test_ball.get_y()), 40)
 
     # keys = pygame.key.get_pressed()

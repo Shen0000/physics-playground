@@ -42,12 +42,12 @@ def calculate_gravitational_force(ball, ball2):
     theta = math.atan2(y2 - y1, x2 - x1)  # angle between the line joining the two objects and the x-axis
     fx = f * math.cos(theta)  # x component of the gravitational force
     fy = f * math.sin(theta)  # y component of the gravitational force
-    ax = fx / ball.get_mass()
-    ay = fy / ball.get_mass()
-    ax2 = fx / ball2.get_mass()
-    ay2 = fy / ball2.get_mass()
-    ball.set_ax(ax if x1 < x2 else -ax)
-    ball.set_ay(ay if y1 < y2 else -ay)
-    ball2.set_ax(ax2 if x2 < x1 else -ax2)
-    ball2.set_ay(ay2 if y2 < y1 else -ay2)
+    ax = fx / m1
+    ay = fy / m1
+    ax2 = fx / m2
+    ay2 = fy / m2
+    ball.set_ax(-ax)
+    ball2.set_ax(-ax2)
+    ball.set_ay(-ay)
+    ball2.set_ay(-ay2)
     return

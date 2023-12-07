@@ -46,8 +46,8 @@ def calculate_gravitational_force(ball, ball2):
     ay = fy / m1
     ax2 = fx / m2
     ay2 = fy / m2
-    ball.set_ax(-ax)
+    ball.set_ax(ax)
     ball2.set_ax(-ax2)
-    ball.set_ay(-ay)
+    ball.set_ay(ay)
     ball2.set_ay(-ay2)
     return

@@ -17,8 +17,8 @@ pygame.font.init() # you have to call this at the start,
 my_font = pygame.font.SysFont('Comic Sans MS', 30)
 # test_ball = GravityBall(10, 40, screen.get_width() / 2, screen.get_height() / 4, 0, 0, 0, G_0*FUDGE)
 # player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)
-test_sun = GravityBall(5e16, 40, screen.get_width() / 2, screen.get_height() / 2, 0, 0, 0, 0)
-test_planet = GravityBall(1e11, 20, screen.get_width() / 2 + 300, screen.get_height() / 2, 0, 1e2, 0, 0)
+test_sun = GravityBall(1e18, 40, screen.get_width() / 2, screen.get_height() / 2, 0, 0, 0, 0)
+test_planet = GravityBall(1, 20, screen.get_width() / 2 - 300, screen.get_height() / 2, 0, 485, 0, 0)
 
 while running:
     # poll for events
@@ -48,8 +48,10 @@ while running:
     screen.blit(planet_y_text, (0,50))
     planet_ax_text = my_font.render(str(test_planet.get_ax()), False, (0, 0, 0))
     screen.blit(planet_ax_text, (0,100))
+    pygame.draw.circle(screen, "black", pygame.Vector2(test_sun.get_x(), test_sun.get_y()), 300)
     pygame.draw.circle(screen, "orange", pygame.Vector2(test_sun.get_x(), test_sun.get_y()), test_sun.get_radius())
     pygame.draw.circle(screen, "blue", pygame.Vector2(test_planet.get_x(), test_planet.get_y()), test_planet.get_radius())
+    
 
     # keys = pygame.key.get_pressed()
     # if keys[pygame.K_w]:
@@ -68,5 +70,6 @@ while running:
     # dt is delta time in seconds since last frame, used for framerate-
     # independent physics.
     dt = clock.tick(60) / 1000
+    print(dt)
 
 pygame.quit()

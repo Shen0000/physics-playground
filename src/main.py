@@ -18,7 +18,7 @@ my_font = pygame.font.SysFont('Comic Sans MS', 30)
 # test_ball = GravityBall(10, 40, screen.get_width() / 2, screen.get_height() / 4, 0, 0, 0, G_0*FUDGE)
 # player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)
 test_sun = GravityBall(1e18, 40, screen.get_width() / 2, screen.get_height() / 2, 0, 0, 0, 0)
-test_planet = GravityBall(1, 20, screen.get_width() / 2 - 300, screen.get_height() / 2, 0, 485, 0, 0)
+test_planet = GravityBall(1, 20, screen.get_width() / 2 - 300, screen.get_height() / 2, 0, 550, 0, 0)
 
 while running:
     # poll for events
